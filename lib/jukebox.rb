@@ -10,6 +10,7 @@ songs = [
   "Amos Lee - Keep It Loose, Keep It Tight"
 ]
 
+
 def help
   help = <<-HELP
 I accept the following commands:
@@ -25,8 +26,8 @@ end
 help
 
 def list(songs)
-  songs.each_with_index { |item, index| }
-    puts "#{index+1}. #{item}"
+  songs.each_with_index { |item, index|
+    puts "#{index+1}. #{item}" }
 end
 
 list(songs)
@@ -51,6 +52,7 @@ def exit_jukebox
 end
 
 def run(songs)
+  #help
   command = ""
   while command
   puts "Please enter a command:"
