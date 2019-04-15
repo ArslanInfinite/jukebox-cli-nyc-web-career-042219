@@ -12,65 +12,52 @@ songs = [
 
 
 def help
-  help = <<-HELP
-I accept the following commands:
-- help : displays this help message
-- list : displays a list of songs you can play
-- play : lets you choose a song to play
-- exit : exits this program
-HELP
-
-  puts help
+  puts "I accept the following commands:"
+  puts "- help : displays this help message"
+  puts "- list : displays a list of songs you can play"
+  puts "- exit : exits this program"
 end
 
-help
-
-def list(songs)
-  songs.each_with_index { |item, index|
-    puts "#{index+1}. #{item}" }
+def list(my_songs)
+  songs = my_songs.keys
+  songs.each { |song| puts song }
 end
 
-list(songs)
-
-def play(songs)
+def play(my_songs)
   puts "Please enter a song name or number:"
-  user_response = gets.downcase.chomp
-
-  if (1..9).to_a.include?(user_response.to_i)
-    puts "Playing #{songs[user_response.to_i - 1]}"
-    elsif songs.include?(user_response)
-    puts "Playing #{user_response}"
+  res = gets.chomp
+  if my_songs.key?(res)
+    puts "Playing #{res}"
+    system "open " << res
   else
-    puts "Invalid input, please try again"
+    puts "Invalid input please try again"
   end
 end
-
-play(songs)
 
 def exit_jukebox
   puts "Goodbye"
 end
 
-def run(songs)
-  #help
-  command = ""
-  while command
+def run(my_songs)
+     help
   puts "Please enter a command:"
-  command = gets.downcase.strip
-  case command
-    when 'list'
-      list(songs)
-      when 'play'
-        list(songs)
-        play(songs)
-      when 'help'
-        help
-      when 'exit'
-        exit_jukebox
-        break
-      else
-        help
-      end
+  cmd = gets.chomp
+  until cmd == "exit"
+    puts "Please enter a command:"
+    cmd = gets.chomp
+    case cmd
+    when "list"
+      list(my_songs)
+    when "play"
+      play(my_songs)
+    when "help"
+      help
+    when "exit"
+      exit_jukebox
+      break
+    else
+      puts "Error"
     end
   end
-  run(songs)
+  exit_jukebox
+end
