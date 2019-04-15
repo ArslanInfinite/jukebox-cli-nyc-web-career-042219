@@ -28,7 +28,7 @@ def list(songs)
     puts "#{index+1}. #{item}" }
 end
 
-list(songs)
+# list(songs)
 
 def play(songs)
   puts "Please enter a song name or number:"
@@ -42,7 +42,7 @@ def play(songs)
   end
 end
 
-play(songs)
+# play(songs)
 
 def exit_jukebox
   puts "Goodbye"
@@ -69,4 +69,4 @@ def run(songs)
       end
     end
   end
-  run(songs)
+  # run(songs)
